@@ -3,3 +3,10 @@
 !.gitignore
 !.gitkeep
 !convert.py
+!__init__.py
+!pyproject.toml
+!README.md
+!LICENSE
+!.github/
+!.github/workflows/
+!.github/workflows/*.yml

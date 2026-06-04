@@ -1,0 +1,35 @@
+[project]
+name = "career_emulator_bdci26"
+version = "0.0.0-dev1"
+description = "【华为openJiuwen】Agent 职场长程生存与晋升挑战（CCF BDCI 2026）赛题数据"
+keywords = [
+    "python", "career-sim", "simulation", "agent", "llm", "openjiuwen", "competition",
+    "mcp client", "client", "mcp", "fastmcp", "mcp server", "model context protocol",
+    "ccf", "bdci",
+]
+readme = "README.md"
+requires-python = ">=3.11,<4"
+license = "MIT"
+authors = [
+    {name = "Hugo", email = "hugo@hugohuang.com"},
+    {name = "Yuwei", email = "yuwei.willow.z@gmail.com"},
+]
+classifiers = [
+    'Programming Language :: Python',
+    'Programming Language :: Python :: Implementation :: CPython',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3 :: Only',
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Intended Audience :: Developers",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://www.xir.cn/competition/races/BDCI2026"
+Documentation = "https://career-emulator.readthedocs.io"
+Source = "https://github.com/Trenza1ore/CareerSim-BDCI26"
+Gitcode = "https://gitcode.com/SushiNinja/CareerSim-BDCI26"
+Issues = "https://gitcode.com/SushiNinja/CareerSim-BDCI26/issues"
+
+[tool.setuptools.package-data]
+career_emulator_bdci26 = [".gitkeep", "*.data"]

@@ -9,8 +9,11 @@ from pathlib import Path
 
 import msgpack
 
-ROOT_DIR = Path.cwd()
+SPLIT = "dev"
+ROOT_DIR = Path(__file__).parent
 CACHE_DIR = ROOT_DIR / ".cache"
+DATA_DIR = ROOT_DIR / "career_emulator_bdci26" / SPLIT / "dataset"
+assert DATA_DIR.exists()
 
 def update_cache():
     """Update cache for test set data."""
@@ -31,9 +34,21 @@ def convert_json_to_msgpack(json_path: Path) -> None:
     try:
         with json_path.open("r", encoding="utf-8") as f:
             data = json.load(f)
-        header_bytes = b"DEV"
+
+        header = b"DEV"
+        if msgpack_path.is_file():
+            try:
+                raw = msgpack_path.read_bytes()
+                if raw.startswith(header):
+                    existing = msgpack.unpackb(gzip.decompress(raw[len(header) :]))
+                    if existing == data:
+                        print(f"Unchanged: {msgpack_path}")
+                        return
+            except Exception:
+                pass
+
         with msgpack_path.open("wb") as f:
-            f.write(header_bytes + gzip.compress(msgpack.packb(data)))
+            f.write(header + gzip.compress(msgpack.packb(data)))
 
         print(f"Converted: {json_path} -> {msgpack_path}")
 
@@ -43,10 +58,10 @@ def convert_json_to_msgpack(json_path: Path) -> None:
 
 if __name__ == "__main__":
     update_cache()
-    json_files = list(f for f in ROOT_DIR.rglob("*.json") if os.path.sep + "." not in str(f.absolute()))
+    json_files = list(f for f in DATA_DIR.rglob("*.json") if os.path.sep + "." not in str(f.absolute()))
 
     for file in json_files:
-        current_file = file.relative_to(ROOT_DIR)
+        current_file = file.relative_to(DATA_DIR)
         reference_file = CACHE_DIR / current_file
         if reference_file.is_file:
             file.write_bytes(reference_file.read_bytes())
