@@ -10,12 +10,22 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     permissions:
       contents: read
+    defaults:
+      run:
+        shell: bash
     strategy:
       fail-fast: false
       matrix:
+        os:
+          - ubuntu-22.04
+          - ubuntu-latest
+          - windows-2022
+          - windows-latest
+          - macos-14
+          - macos-latest
         python-version: ["3.11", "3.12", "3.13", "3.14"]
 
     steps:
@@ -36,3 +46,4 @@ jobs:
     - name: Run tests
       run: |
         career-emulator update --source distribution
+        echo q | career-emulator play
