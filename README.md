@@ -5,7 +5,7 @@
 ## 安装
 
 ```bash
-pip install "career_emulator[bdci26]"
+pip install "career-emulator[bdci26]"
 ```
 
 ## 使用
