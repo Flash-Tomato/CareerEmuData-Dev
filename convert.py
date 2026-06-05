@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import gzip
+import zlib
 import json
 import os
 import subprocess
@@ -35,22 +35,27 @@ def convert_json_to_msgpack(json_path: Path) -> None:
         with json_path.open("r", encoding="utf-8") as f:
             data = json.load(f)
 
-        header = b"DEV"
+        header = SPLIT[0].upper().encode(encoding="utf-8")
         if msgpack_path.is_file():
             try:
                 raw = msgpack_path.read_bytes()
                 if raw.startswith(header):
-                    existing = msgpack.unpackb(gzip.decompress(raw[len(header) :]))
+                    existing = msgpack.unpackb(zlib.decompress(raw[len(header) :], wbits=-15))
                     if existing == data:
                         print(f"Unchanged: {msgpack_path}")
                         return
-            except Exception:
+            except Exception:  # pylint: disable=broad-exception-caught
                 pass
 
         with msgpack_path.open("wb") as f:
-            f.write(header + gzip.compress(msgpack.packb(data)))
+            compressor = zlib.compressobj(level=9, wbits=-15, memLevel=9)
+            compressed = compressor.compress(msgpack.packb(data))
+            compressed += compressor.flush(zlib.Z_FINISH)
+            f.write(header + compressed)
 
-        print(f"Converted: {json_path} -> {msgpack_path}")
+        json_size = len((json.dumps(data, ensure_ascii=False)).encode())
+        compressed_size = len(compressed)
+        print(f"Converted: {json_path} -> {msgpack_path} ({compressed_size/json_size*100:4.1f}%)")
 
     except Exception as e:  # pylint: disable=broad-exception-caught
         print(f"Failed: {json_path} ({e})", file=sys.stderr)
