@@ -1,6 +1,6 @@
 # 【华为openJiuwen】职场长程生存与晋升挑战（CCF BDCI 2026）赛题数据
 
-[![Documentation](https://img.shields.io/badge/赛题文档-blue?style=for-the-badge&logo=readthedocs&link=https%3A%2F%2Fcareer-emulator.readthedocs.io%2Fen%2Flatest%2Findex.html)](https://career-emulator.readthedocs.io) [![GitCode Dev](https://img.shields.io/badge/%E5%BC%80%E5%8F%91%E7%94%A8GitCode%E4%BB%93-brown?style=for-the-badge&logo=GitCode)](https://gitcode.com/SushiNinja/CareerSim-BDCI26) [![GitHub Dev](https://img.shields.io/badge/%E5%BC%80%E5%8F%91%E7%94%A8GitHub%E4%BB%93-black?style=for-the-badge&logo=GitHub)](https://github.com/Trenza1ore/CareerSim-BDCI26)
+[![Documentation](https://img.shields.io/badge/赛题文档-blue?style=for-the-badge&logo=readthedocs&link=https%3A%2F%2Fcareer-emulator.readthedocs.io%2Fen%2Flatest%2Findex.html)](https://career-emulator.readthedocs.io) [![GitCode Dev](https://img.shields.io/badge/%E5%8F%82%E8%B5%9B%E7%94%A8GitCode%E4%BB%93-brown?style=for-the-badge&logo=GitCode)](https://gitcode.com/SushiNinja/CareerSim-BDCI26) [![GitHub Dev](https://img.shields.io/badge/%E5%8F%82%E8%B5%9B%E7%94%A8GitHub%E4%BB%93-black?style=for-the-badge&logo=GitHub)](https://github.com/Trenza1ore/CareerSim-BDCI26)
 
 `career-emulator-bdci26` 为 [career-emulator](https://pypi.org/p/career-emulator) 模拟器提供比赛所需的事件与配置数据，方便参赛选手通过 PyPI 直接获取题库。
 
