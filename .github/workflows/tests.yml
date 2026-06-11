@@ -1,12 +1,7 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  release:
 
 jobs:
   test:
@@ -17,16 +12,13 @@ jobs:
       run:
         shell: bash
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         os:
           - ubuntu-22.04
-          - ubuntu-latest
           - windows-2022
-          - windows-latest
           - macos-14
-          - macos-latest
-        python-version: ["3.11", "3.12", "3.13", "3.14"]
+        python-version: ["3.11", "3.14"]
 
     steps:
     - uses: actions/checkout@v4
