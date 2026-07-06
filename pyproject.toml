@@ -1,6 +1,6 @@
 [project]
 name = "career_emulator_bdci26"
-version = "0.0.0-dev7"
+version = "0.0.0-dev8"
 description = "【华为openJiuwen】Agent 职场长程生存与晋升挑战（CCF BDCI 2026）赛题数据"
 keywords = [
     "python", "career-sim", "simulation", "agent", "llm", "openjiuwen", "competition",
